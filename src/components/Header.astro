@@ -1,0 +1,18 @@
+---
+// es una funcioón que está importada de la ruta que está en i18n
+import {useTranslations} from '../i18n';
+
+// añadimos las constantes y si tenemos idiomas empieza por español y solo se puede elegir estos dos idiomas es o en
+const lang = (Astro.currentLocale ?? "es") as "es" | "en"
+
+// como constante variable t 
+const t = useTranslations(lang);
+---
+
+//aquí empezamos a hacer la página en sí como cabecera
+<header>
+    <div>
+        // en la variable t trae del lugar lo que esté detrás del punto de site.title en este caso el título
+        <p>{t("site.title")}</p>
+    </div>
+</header>
