@@ -1,20 +1,20 @@
 ---
-// es una funcioón que está importada de la ruta que está en i18n
+/* es una funcioón que está importada de la ruta que está en i18n */
 import { useTranslations } from "../i18n";
 
-// añadimos las constantes y si tenemos idiomas empieza por español y solo se puede elegir estos dos idiomas es o en
+/*añadimos las constantes y si tenemos idiomas empieza por español y solo se puede elegir estos dos idiomas es o en*/
 const lang = (Astro.currentLocale ?? "es") as "es" | "en";
 
-// como constante variable t
+/* como constante variable t*/
 const t = useTranslations(lang);
 ---
 
-//aquí empezamos a hacer la página en sí como cabecera
-// le añadimos a la cabecera como clase 
+<!-- aquí empezamos a hacer la página en sí como cabecera
+le añadimos a la cabecera como clase  -->
 <header class="bg-white border-b border-slate-200 py-4 ">
     <div class="w-[min (100%-2rem,1100px)] mx-auto flex flex-wrap justify-between items-center gap-x-6 gap-y-3">
-        // en la variable t trae del lugar lo que esté detrás del punto de
-        site.title en este caso el título
+        <!-- en la variable t trae del lugar lo que esté detrás del punto de
+        site.title en este caso el título --> 
         <p>{t("site.title")}</p>
     </div>
     <nav>
