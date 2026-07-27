@@ -12,3 +12,24 @@ const { title, description = "Diseño Web e internalización" } = Astro.props;
 // en el caso que sea  ??
 const lang = Astro.currentLocale ?? "es";
 ---
+
+<!DOCTYPE html>
+
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={description} />
+		<title>{title}</title>
+	</head>
+
+	//al body le añadimos estilos con las class y le endicamos lo que queremos: 
+	//  bg-slate-50 es...  
+	//  text-grey-800 es... 
+	//  leadin-relaxed es espacio entre líneas
+	<body class="bg-slate-50 text-gray-800 leading-relaxed">
+
+		<slot />
+		
+	</body>
+</html>
