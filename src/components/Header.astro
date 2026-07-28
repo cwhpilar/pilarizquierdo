@@ -7,16 +7,47 @@ const lang = (Astro.currentLocale ?? "es") as "es" | "en";
 
 /* como constante variable t*/
 const t = useTranslations(lang);
+
+/* lenguaje alternativo  === significa comparar */
+/* compara entre es y en y en otro caso es es*/
+const altLang = lang === "es" ? "en" : "es";
+
+/* crear la ruta sin el idioma*/
+const rutaSinLocale = Astro.url.pathname.replace(/^\/(es|en)/, "") || "/";
+
+/*ruta alternativa es para redirigir a es o a en */
+const altHref = `/${altLang}${rutaSinLocale}`;
+
+/*creamos una variable base
+
+/* creamos los enlaces para los li */
+const base = `/${lang}/`;
+
+/* aquí estamos haciendo los enlaces del menú de la cabecera */
+const enlaces = [
+    { href: `${base}#inicio}`, label: t("nav.home") },
+    { href: `${base}#servicios}`, label: t("nav.services") },
+    { href: `${base}#contacto}`, label: t("nav.contact") },
+];
 ---
 
 <!-- aquí empezamos a hacer la página en sí como cabecera
 le añadimos a la cabecera como clase  -->
-<header class="bg-white border-b border-slate-200 py-4 ">
-    <div class="w-[min (100%-2rem,1100px)] mx-auto flex flex-wrap justify-between items-center gap-x-6 gap-y-3">
+<header class="bg-white border-b border-slate-200 py-4">
+    <!-- cuidado con los espacios de min() porque no ajusta bien-->
+    <div
+        class="w-[min(100%-2rem,1100px)] mx-auto flex flex-wrap justify-between items-center gap-x-6 gap-y-3">
         <!-- en la variable t trae del lugar lo que esté detrás del punto de
-        site.title en este caso el título --> 
-        <p>{t("site.title")}</p>
+        site.title en este caso el título -->
+        <p class="text-2xl font-bold text-blue-900">  <!-- en el párrafo hacemos una clase de color tamaño -->
+
+            <a href=""> <!-- y con a href hacemos que el título sea un enlace -->
+                {t("site.title")}
+
+            </a>
+        </p>
     </div>
+    
     <nav>
         <ul>
             <li></li>
