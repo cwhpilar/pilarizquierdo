@@ -88,5 +88,30 @@ le añadimos a la cabecera como clase  -->
                 }
             </ul>
         </nav>
+
+        <!-- cambio de lenguaje entiqueta de enlace -->
+         <a
+         href={altHref}
+         hreflang={altLang}
+         lang={altLang}
+         aria-label={t("nav.langSwitch")}
+         class="
+         rounded-full 
+         border 
+         border-blue-700 
+         px-3 
+         py-1 
+         text-sm 
+         font-semibold 
+         text-blue-700 
+         transition 
+         hover:bg-blue-700 
+         hover:text-white 
+         focus-visible:outline-offset-2 
+         focus-visible:outline-2 
+         focus-visible:outline-blue-700"
+         >
+        {altLang.toUpperCase()}
+        </a>
     </div>
 </header>
