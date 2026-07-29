@@ -1,0 +1,58 @@
+---
+import { useTranslations, defaultLang, type Lang, type TranslationKey } from "../i18n";
+
+const lang = (Astro.currentLocale ?? "es") as Lang;
+const t = useTranslations(lang);
+
+---  
+   
+<!-- vamos al a la sección de contactos y sus clases para el botón py padding y  -->
+<section id="Contacto" class="py-10 md:py-16">
+        <!-- utilizamos la t que es la variable para traducir -->
+    <div class="contenedor">
+
+       <h2>Contacto</h2>
+        <p>Cuéntanos que necesita tu empresa y te responderemos lo antes posible</p>
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Solicita información sobre nuestros servicios</legend>
+
+                <div>
+                    <label for="name">Nombre completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required aria-describedby="ayuda-email">
+                    <small id="ayuda-email">Introduce un correo válido, por ejemplo nombre@empresa.com</small>
+                </div>
+                <div>
+                    <label for="company">Nombre empresa</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                <div>
+                    <label for="servicio">Servicio de interés</label>
+                    <select name="servicio" id="servicio">
+                        <option value="">Seleciona una opción</option>
+                        <option value="maquetacion">Diseño y maquetación web</option>
+                        <option value="i18n">Internacionalización de contenido</option>
+                        <option value="optimizacion">Optimización y mejora continua</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="mensaje">Mensaje</label>
+                    <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
+                </div>
+
+                <button type="submit">Enviar solicitud</button>
+            </fieldset>
+        </form>
+
+ 
+        </div>
+    </div>
+</section>
+
+   
+   
