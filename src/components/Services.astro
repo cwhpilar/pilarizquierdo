@@ -1,0 +1,23 @@
+---
+import { useTranslations, defaultLang, type Lang, type TranslationKey } from "../i18n";
+
+const lang = (Astro.currentLocale ?? "es") as Lang;
+const t = useTranslations(lang);
+
+// definimos los servicios que tiene la página 
+const servicios:{
+    titulo: TranslationKey;
+    texto: TranslationKey;
+    destacado?: boolean;
+}[] = [
+    {titulo: "services.design.title", texto: "services.design.text"},
+    {titulo: "services.i18n.title", texto:"services.i18n.text"},
+    {titulo: "services.optimization.title", texto: "services.optimization.text"}
+]
+
+// definimos la clase tarjetas
+const claseTarjeta = "relative bg-white border border-slate-200 rounded-2xl p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08))]";
+---
+
+
+

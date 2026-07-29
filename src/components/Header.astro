@@ -1,62 +1,36 @@
 ---
-/* es una funcioón que está importada de la ruta que está en i18n */
 import { useTranslations } from "../i18n";
 
-/*añadimos las constantes y si tenemos idiomas empieza por español y solo se puede elegir estos dos idiomas es o en*/
 const lang = (Astro.currentLocale ?? "es") as "es" | "en";
-
-/* como constante variable t*/
 const t = useTranslations(lang);
 
-/* lenguaje alternativo  === significa comparar */
-/* compara entre es y en y en otro caso es es*/
 const altLang = lang === "es" ? "en" : "es";
 
-/* crear la ruta sin el idioma*/
 const rutaSinLocale = Astro.url.pathname.replace(/^\/(es|en)/, "") || "/";
-
-/*ruta alternativa es para redirigir a es o a en */
 const altHref = `/${altLang}${rutaSinLocale}`;
 
-/*creamos una variable base
-
-/* creamos los enlaces para los li */
 const base = `/${lang}/`;
 
-/* aquí estamos haciendo los enlaces del menú de la cabecera */
 const enlaces = [
-    { href: `${base}#inicio}`, label: t("nav.home") },
-    { href: `${base}#servicios}`, label: t("nav.services") },
-    { href: `${base}#contacto}`, label: t("nav.contact") },
+    { href: `${base}#inicio`, label: t("nav.home") },
+    { href: `${base}#servicios`, label: t("nav.services") },
+    { href: `${base}#contacto`, label: t("nav.contact") },
 ];
 ---
 
-<!-- aquí empezamos a hacer la página en sí como cabecera
-le añadimos a la cabecera como clase  -->
 <header class="bg-white border-b border-slate-200 py-4">
-    <!-- cuidado con los espacios de min() porque no ajusta bien-->
     <div
         class="w-[min(100%-2rem,1100px)] mx-auto flex flex-wrap justify-between items-center gap-x-6 gap-y-3"
     >
-        <!-- en la variable t trae del lugar lo que esté detrás del punto de
-        site.title en este caso el título -->
         <p class="text-2xl font-bold text-blue-900">
-            <!-- en el párrafo hacemos una clase de color tamaño -->
-            <!-- y con a href hacemos que el título sea un enlace a la variable base-->
             <a
                 href={base}
-                class="hover:text-blue-700
-                focus-visible:outline-2
-                focus-visible:outline-offset-4
-                focus-visible:outline-blue-700"
+                class="hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700"
             >
-                <!-- generamos una clase que haga de comportamiento de ratón al pasar por el título -->
                 {t("site.title")}
             </a>
         </p>
 
-        <!--  ahora hacemos el menú que se muestre en la cabecera-->
-        <!-- creamos una area de navegación sm es el tamaño de la pantalla -->
         <nav
             aria-label={t("nav.aria")}
             class="order-3 w-full sm:order-0 sm:w-auto"
@@ -65,51 +39,20 @@ le añadimos a la cabecera como clase  -->
                 {
                     enlaces.map(({ href, label }) => (
                         <li>
-                            <!-- ahora le añadimos el estilo al enlace a href como clases -->
                             <a href={href}
-                            class="
-                            
-                            inline-block
-                            py-2
-                            font-semibold
-                            text-gray-600 
-                            hover:text-blue-700
-
-                            focus-visible:outline-2 
-                            focus-visible:outline-offset-2
-                            focus-visible:outline-blue-700
-                            
-                            ">{label}
-                            
-                            </a>  
-
+                            class="inline-block py-2 font-semibold text-gray-600 hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-700"
+                            >{label}</a>
                         </li>
                     ))
                 }
             </ul>
         </nav>
-
-        <!-- cambio de lenguaje entiqueta de enlace -->
-         <a
+        <a
          href={altHref}
          hreflang={altLang}
          lang={altLang}
          aria-label={t("nav.langSwitch")}
-         class="
-         rounded-full 
-         border 
-         border-blue-700 
-         px-3 
-         py-1 
-         text-sm 
-         font-semibold 
-         text-blue-700 
-         transition 
-         hover:bg-blue-700 
-         hover:text-white 
-         focus-visible:outline-offset-2 
-         focus-visible:outline-2 
-         focus-visible:outline-blue-700"
+         class="rounded-full border border-blue-700 px-3 py-1 text-sm font-semibold text-blue-700 transition hover:bg-blue-700 hover:text-white focus-visible:outline-offset-2 focus-visible:outline-2 focus-visible:outline-blue-700"
          >
         {altLang.toUpperCase()}
         </a>

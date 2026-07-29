@@ -1,16 +1,16 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-
 import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
 
-
-// importamos el diccionario que va con {}
 import { useTranslations } from "../../i18n";
 
-// -- cambiamos el idioma a inglés --> 
-const t = useTranslations("en");  
+const t = useTranslations("en");
 ---
 
-<MainLayout title={t("site.title")} description ={t("site.description")}>
-    <Header />   <!-- como esto está ya creado le decimos que lo meta aquí directamente o es como un enlace al HEADER.ASTRO --> 
+<MainLayout title={t("site.title")} description={t("site.description")}>
+    <Header />
+    <main>
+        <Hero />
+    </main>
 </MainLayout>
