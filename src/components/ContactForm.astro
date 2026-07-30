@@ -1,4 +1,6 @@
 ---
+//definiciones para que entienda el javascript
+
 import {
     useTranslations,
     defaultLang,
@@ -8,17 +10,34 @@ import {
 
 const lang = (Astro.currentLocale ?? "es") as Lang;
 const t = useTranslations(lang);
+
+
+// añadimos aquí lo necesario para las variables que vamos a utilizar en el formulario
+const claseCampo = "w-full rounded-lg border-slate-200 p-3 focus:border-blue-700 focus:outline-2 focus:outline-offset-0 focus:outline-blue-700";
+//creamos las constantes que usaremos en el formulario
+const opciones = [
+    {value: "design", label: t("form.service.design")},
+    {value: "i18n", label: t("form.service.i18n")},
+    {value: "optimization", label: t("form.service.optimization")},
+    {value: "other", label: t("form.service.other")},
+]
 ---
 
-<!-- vamos al a la sección de contactos y sus clases para el botón py padding y  -->
-<section id="Contacto" class="py-10 md:py-16">
-    <!-- utilizamos la t que es la variable para traducir -->
+<!--- esta parte es para que entienda el html -->
+
+<!-- vamos a la sección de CONTACTOS del HEADER DE COMPONENTS   -->
+        <!-- el identificador es contacto que está en el header y la clase es paddiny es de 10 y pantalla mediana el padding es de 16 -->
+<section id="contacto" class="py-10 md:py-16">
+
+
     <div class="contenedor">
-        <h2>Contacto</h2>
-        <p>
-            Cuéntanos que necesita tu empresa y te responderemos lo antes
-            posible
-        </p>
+        <h2>Contacto
+             <!-- utilizamos la t que es la variable para traducir -->
+        
+        </h2>     
+
+        
+        <!-- aquí empieza el formulario -->
         <form action="#" method="post">
             <fieldset>
                 <legend>Solicita información sobre nuestros servicios</legend>
@@ -41,7 +60,12 @@ const t = useTranslations(lang);
                         nombre@empresa.com</small
                     >
                 </div>
+
+                <!--  los div son divisiones  -->
+
+
                 <div>
+                    <!--  esto es para una etiqueta de texto -->
                     <label for="company">Nombre empresa</label>
                     <input type="text" id="company" name="company" required />
                 </div>
