@@ -17,9 +17,9 @@ const claseCampo = "w-full rounded-lg border-slate-200 p-3 focus:border-blue-700
 
 // constante formulario
 const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID;
-// constante endpoint 
-const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : "";
 
+// constante endpoint  es para acceder a la página de bd de formularios es gratis y se puede pagar
+const endpoint = formspreeId ? `https://formspree.io/f/${formspreeId}` : "";
 
 //creamos las constantes que usaremos en el formulario
 const opciones = [
@@ -34,85 +34,59 @@ const opciones = [
 
 <!-- vamos a la sección de CONTACTOS del HEADER DE COMPONENTS   -->
         <!-- el identificador es contacto que está en el header y la clase es paddiny es de 10 y pantalla mediana el padding es de 16 -->
-<section id="contacto" class="py-10 md:py-16">
-
-
-    <div class="contenedor">
-        <h2 class = "mb-2">
-             <!-- utilizamos la t que es la variable para traducir -->
-        
-        </h2>     
-
-
-        <!-- aquí empieza el formulario -->
-        <form action="#" method="post">
-            <fieldset>
-                <legend>Solicita información sobre nuestros servicios</legend>
-
-                <div>
-                    <label for="name">Nombre completo</label>
-                    <input type="text" id="name" name="name" required />
-                </div>
-                <div>
-                    <label for="email">Correo electrónico</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        aria-describedby="ayuda-email"
-                    />
-                    <small id="ayuda-email"
-                        >Introduce un correo válido, por ejemplo
-                        nombre@empresa.com</small
-                    >
-                </div>
-
-                <!--  los div son divisiones  -->
-
-
-                <div>
-                    <!--  esto es para una etiqueta de texto -->
----
-import { useTranslations, defaultLang, type Lang } from "../i18n";
-
-const lang = (Astro.currentLocale ?? "es") as Lang;
-const t = useTranslations(lang);
-
-const claseCampo = "w-full rounded-lg border-slate-200 p-3 focus:border-blue-700 focus:outline-2 focus:outline-offset-0 focus:outline-blue-700";
-
-
-
-const opciones = [
-    {value: "design", label: t("form.service.design")},
-    {value: "i18n", label: t("form.service.i18n")},
-    {value: "optimization", label: t("form.service.optimization")},
-    {value: "other", label: t("form.service.other")},
-]
----
 
 <section id="contacto" class="py-10 md:py-16">
     <div class="contenedor">
         <h2 class="mb-2 text-2xl font-bold text-gray-800">{t("contact.title")}</h2>
         <p class="mb-6 text-gray-600">{t("contact.text")}</p>
-        <form action={endpoint}>
-            <input type="text">
+        <form 
+        action={endpoint}
+        method="post"
+        class="max-w-2xl rounded-2xl border border-slate-200 gb-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+        >
+
+        <!-- en este imput el tipo es oculto porque esta información se oculta para que el usuario no la vea -->
+            <input type="hidden" name="lang" value={lang}>
+            <div class="mb-4">
+                <label for="name" class="mb-1 block font-semibold">{t("form.name")}</label>
+                <input 
+                type="text" 
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                class={claseCampo}
+                >
+            </div>
+
+        <!--división de el email-->
+            <div class="mb-4">
+                <label for="email" class="mb-1 block font-semibold">{t("form.email")}</label>
+                <input 
+                type="text" 
+                id="email"
+                name="name"
+                required
+                autocomplete="email"
+                aria-labelledby ="email-help"
+                class={claseCampo}
+                >
+            </div>
+
+        <!--división de la organización -->
             <div class="mb-4">
                 <label for=""></label>
                 <input type="text">
             </div>
+
+        <!--división de los servicios -->
             <div class="mb-4">
                 <label for=""></label>
                 <input type="text">
             </div>
-            <div class="mb-4">
-                <label for=""></label>
-                <input type="text">
-            </div>
-            <div class="mb-4">
-                <label for=""></label>
-                <input type="text">
-            </div>
+
+
+
         </form>
     </div>
 </section>
