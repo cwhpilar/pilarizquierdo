@@ -12,8 +12,8 @@ const lang = (Astro.currentLocale ?? "es") as Lang;
 const t = useTranslations(lang);
 
 
-// añadimos aquí lo necesario para las variables que vamos a utilizar en el formulario
-const claseCampo = "w-full rounded-lg border-slate-200 p-3 focus:border-blue-700 focus:outline-2 focus:outline-offset-0 focus:outline-blue-700";
+// añadimos aquí lo necesario para las variables que vamos a utilizar en el formulario en la clasecampo va el borde y estilos del formulario
+const claseCampo = "w-full rounded-lg border border-slate-200 p-3 focus:border-blue-700 focus:outline-2 focus:outline-offset-0 focus:outline-blue-700";
 
 // constante formulario
 const formspreeId = import.meta.env.PUBLIC_FORMSPREE_ID;
@@ -75,17 +75,49 @@ const opciones = [
 
         <!--división de la organización -->
             <div class="mb-4">
-                <label for=""></label>
-                <input type="text">
+                <label for="company" class="mb-1 block font-semibold"></label>
+                <input 
+                type="text"
+                id="company"
+                name="company"
+                required
+                autocomplete="organization"
+                class={claseCampo}
+                >
             </div>
 
         <!--división de los servicios -->
+
             <div class="mb-4">
-                <label for=""></label>
-                <input type="text">
+                <label for="services" class="mb-1 block font-semibold">{t("form.service")}</label>
+                <select id="services" name="services" required class={claseCampo}>
+                    <option value="" disabled selected> 
+                        {t("form.service.placeholder")}
+                    </option>
+                    {
+                        opciones.map(({value, label}) => (
+                            <option value={value}>{label}</option>
+                        ))
+                    }
+                </select>
             </div>
 
 
+            <!-- el el mensaje -->
+            <div class="mb-4">
+                <label for="message" class="mb-1 block font-semibold">{t("form.message")}</label>
+                <textarea id="message" name="message" rows="5" required class={claseCampo}></textarea>
+            </div>
+
+
+            <!-- el botón -->
+
+            <button
+            type="submit"
+            class="rounded-lg bg-orange-500 px-5 p-3 font-bold text-white transition hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600"
+            >
+                    {t("form.submit")}
+            </button>
 
         </form>
     </div>
